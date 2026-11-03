@@ -1,0 +1,1 @@
+"""Capa de persistencia. Ninguna consulta escapa del repositorio."""

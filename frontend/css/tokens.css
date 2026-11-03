@@ -1,0 +1,103 @@
+@font-face {
+  font-family: 'Alpha Cyberpunk';
+  src: url('/fonts/alpha-cyberpunk-font/AlphaCyberpunkDemoRegular-JpKPo.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Material Theories';
+  src: url('/fonts/material-theories-font/MaterialTheoriesDemoRegular-zrDyX.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Zirox Cyberpunk';
+  src: url('/fonts/zirox-cyberpunk-font/ZiroxCyberpunkDemoRegular-7Ov4B.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Future Light';
+  src: url('/fonts/future-light-font/FutureLight-BW15w.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --bg-dark: #06060a;
+  --bg-panel: rgba(10, 10, 15, 0.85);
+  --bg-node: #0a0a14;
+  --bg-overlay: rgba(6, 6, 10, 0.9);
+
+  --neon-red: #ff1a3c;
+  --neon-red-glow: rgba(255, 26, 60, 0.5);
+  --neon-blue: #3a3aff;
+  --neon-blue-glow: rgba(58, 58, 255, 0.6);
+  --neon-cyan: #00e5ff;
+  --neon-cyan-dim: rgba(0, 229, 255, 0.4);
+  --neon-cyan-glow: rgba(0, 229, 255, 0.6);
+  --neon-pink: #ff00e5;
+
+  --text-highlight-cyan: #00e5ff;
+  --text-highlight-gold: #facc15;
+  --text-main: #ffffff;
+  --text-highlight: #ffffff;
+  --text-muted: #888;
+
+  --border-color: #333;
+  --border-main: 1px solid var(--border-color);
+
+  --font-body: 'Future Light', 'Courier New', monospace;
+  --font-normal: 'Alpha Cyberpunk', 'Courier New', monospace;
+  --font-name: 'Material Theories', 'Impact', sans-serif;
+  --font-titles: 'Zirox Cyberpunk', 'Impact', sans-serif;
+  --font-mono: 'Courier New', Courier, monospace;
+  --font-serif: 'Georgia', serif;
+
+  --cut-size: 12px;
+
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --max-width: 1200px;
+
+  --color-ink: #1a1a1a;
+  --color-muted: #555;
+  --color-line: #ddd;
+  --color-terracotta: #c25a3a;
+}
+
+[data-theme="light"] {
+  --bg-dark: #f4f4f0;
+  --bg-panel: rgba(240, 240, 235, 0.9);
+  --bg-node: #ffffff;
+  --bg-overlay: rgba(244, 244, 240, 0.85);
+
+  --neon-red: #cc0011;
+  --neon-red-glow: rgba(204, 0, 17, 0.4);
+  --neon-blue: #0033cc;
+  --neon-blue-glow: rgba(0, 51, 204, 0.3);
+  --neon-cyan: #0055ff;
+  --neon-cyan-dim: rgba(0, 85, 255, 0.3);
+  --neon-cyan-glow: rgba(0, 85, 255, 0.4);
+  --neon-pink: #aa00aa;
+
+  --text-highlight-cyan: #0055ff;
+  --text-highlight-gold: #aa6600;
+  --text-main: #111111;
+  --text-highlight: #000000;
+  --text-muted: #666;
+
+  --border-color: #888;
+}

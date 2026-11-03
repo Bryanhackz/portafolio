@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Admin Terminal</title>
+<link rel="stylesheet" href="/css/tokens.css">
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/css/components.css">
+<link rel="stylesheet" href="/css/pages/admin.css">
+</head>
+<body class="admin-body">
+
+<header class="admin-header">
+  <strong class="text-green">ROOT@BZG:~# {{USER_EMAIL}}</strong>
+  <form method="post" action="/admin/logout" class="inline-form">
+    <input type="hidden" name="_csrf" value="{{CSRF_TOKEN}}">
+    <button type="submit" class="btn btn-secondary btn-sm">TERMINATE SESSION</button>
+  </form>
+</header>
+
+<main class="admin-main">
+  <!-- Panel Proyectos -->
+  <section class="admin-panel">
+    <div class="panel-header">
+      <h2 class="text-blue panel-title">PROJECTS_DB</h2>
+      <button id="new-project" class="btn btn-primary btn-sm">+ NEW_ENTRY</button>
+    </div>
+    
+    <form id="project-form" class="admin-form" hidden>
+      <input type="hidden" name="id" value="">
+      <label>SLUG <input type="text" name="slug" required maxlength="80"></label>
+      <label>TITLE <input type="text" name="title" required maxlength="120"></label>
+      <label>CATEGORY <input type="text" name="category" required maxlength="60"></label>
+      <label>CHALLENGE <textarea name="challenge" required rows="2" minlength="10" maxlength="2000"></textarea></label>
+      <label>SOLUTION <textarea name="solution" required rows="2" minlength="10" maxlength="2000"></textarea></label>
+      <label>RESULT <textarea name="result" required rows="2" minlength="10" maxlength="2000"></textarea></label>
+      
+      <label class="checkbox-label">
+        <input type="checkbox" name="published" checked> PUBLISHED
+      </label>
+      
+      <div class="form-actions">
+        <button type="submit" class="btn btn-primary btn-sm">EXECUTE_SAVE</button>
+        <button type="button" id="cancel-project" class="btn btn-secondary btn-sm">ABORT</button>
+      </div>
+      <p class="form-status text-green" data-role="project-status"></p>
+    </form>
+
+    <ul id="project-list" class="admin-list"></ul>
+  </section>
+
+  <!-- Panel Mensajes -->
+  <section class="admin-panel">
+    <div class="panel-header">
+      <h2 class="text-red panel-title">INCOMING_TRANSMISSIONS</h2>
+      <button id="refresh-messages" class="btn btn-secondary btn-sm">REFRESH</button>
+    </div>
+    <ul id="message-list" class="admin-list"></ul>
+  </section>
+</main>
+
+<script type="module" src="/js/modules/admin.js"></script>
+</body>
+</html>

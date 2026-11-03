@@ -1,0 +1,265 @@
+.map-container { position: relative; width: 100%; height: 700px; margin-top: 20px; }
+.map-lines { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; }
+
+.line-blue {
+  fill: none; stroke: var(--neon-blue); stroke-width: 1.5;
+  filter: drop-shadow(0 0 3px var(--neon-blue-glow));
+  opacity: 0.6; transition: opacity 0.3s;
+}
+
+.dot-red { fill: var(--neon-red); filter: drop-shadow(0 0 6px var(--neon-red)); }
+.dot-blue { fill: var(--neon-blue); filter: drop-shadow(0 0 6px var(--neon-blue)); }
+
+.node {
+  position: absolute; transform: translate(-50%, -50%); z-index: 2;
+  display: block; transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+/* POSICIONES DE LOS NODOS (Reemplazan los estilos en línea) */
+.node-pos-1 { left: 200px; top: 40px; }
+.node-pos-2 { left: 140px; top: 140px; }
+.node-pos-3 { left: 230px; top: 240px; }
+.node-pos-4 { left: 170px; top: 360px; }
+.node-pos-5 { left: 250px; top: 460px; }
+.node-pos-6 { left: 200px; top: 560px; }
+
+.node-border {
+  background: var(--border-color); padding: 1px;
+  clip-path: polygon(var(--cut-size) 0, 100% 0, 100% calc(100% - var(--cut-size)), calc(100% - var(--cut-size)) 100%, 0 100%, 0 var(--cut-size));
+  transition: background 0.3s;
+}
+
+.node-inner {
+  background: var(--bg-node); color: var(--text-main); padding: 12px 20px;
+  font-family: var(--font-normal); font-size: 11px; letter-spacing: 1.5px;
+  text-align: center; white-space: nowrap;
+  clip-path: polygon(var(--cut-size) 0, 100% 0, 100% calc(100% - var(--cut-size)), calc(100% - var(--cut-size)) 100%, 0 100%, 0 var(--cut-size));
+  transition: all 0.3s ease; opacity: 0.7;
+}
+
+.node.active .node-border { background: var(--neon-blue); box-shadow: 0 0 15px var(--neon-blue-glow); }
+.node.active .node-inner { color: #ffffff; background: var(--neon-blue); opacity: 1; }
+[data-theme="light"] .node.active .node-inner { color: #ffffff; }
+.node.active { transform: translate(-50%, -50%) scale(1.05); }
+
+.content-section {
+  min-height: 100vh; display: flex; flex-direction: column; justify-content: center;
+  padding: 50px 0; border-bottom: 1px dashed var(--border-color);
+  position: relative; overflow: hidden;
+}
+
+.section-content-wrapper { position: relative; z-index: 10; }
+
+.section-label {
+  color: var(--neon-red);
+  font-family: var(--font-normal);
+  font-size: 0.9rem;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+}
+
+h2, h3 { font-family: var(--font-titles); margin: 0; text-transform: uppercase; font-weight: normal; }
+
+.hero-title {
+  font-family: var(--font-name); font-size: clamp(2.5rem, 5vw, 5.5rem);
+  line-height: 1; color: var(--text-highlight); letter-spacing: 2px; margin-bottom: 20px;
+  animation: neon-flicker 4s infinite alternate; text-transform: uppercase; word-wrap: break-word;
+}
+
+/* CLASES UTILITARIAS PARA REEMPLAZAR ESTILOS EN LÍNEA */
+.mt-30 { margin-top: 30px; }
+.security-list {
+  color: var(--text-main);
+  line-height: 2.2;
+  font-size: 1.1rem;
+  list-style: none;
+  padding-left: 0;
+}
+.cookie-link {
+  color: var(--neon-blue);
+  text-decoration: underline;
+}
+
+/* --- ESTILOS PARA MY WORKS (GITHUB) --- */
+.repo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  margin-top: 30px;
+  z-index: 10;
+  position: relative;
+  max-width: 900px;
+}
+
+.repo-card {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 20px;
+  background: var(--bg-panel);
+  border: 1px solid var(--border-color);
+  clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+  transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
+}
+
+.repo-card:hover {
+  border-color: var(--neon-blue);
+  box-shadow: 0 0 15px var(--neon-blue-glow);
+  transform: translateY(-3px);
+}
+
+.repo-icon {
+  flex-shrink: 0;
+}
+
+.repo-icon svg {
+  width: 32px;
+  height: 32px;
+  fill: var(--neon-blue);
+}
+
+.repo-info h3 {
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  color: var(--text-highlight);
+  margin: 0 0 5px 0;
+  text-transform: none;
+}
+
+.repo-info p {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin: 0;
+  line-height: 1.4;
+  max-width: none;
+}
+
+/* --- OTROS ELEMENTOS --- */
+
+.console-text {
+  font-family: var(--font-mono); font-size: 1.2rem; color: var(--neon-blue);
+  display: inline-block; border-right: 3px solid var(--neon-blue);
+  white-space: nowrap; overflow: hidden; animation: blink-caret 0.75s step-end infinite;
+  min-height: 30px;
+}
+
+@keyframes blink-caret { from, to { border-color: transparent } 50% { border-color: var(--neon-blue) } }
+
+h2 { font-size: 3rem; color: var(--text-highlight); margin-bottom: 20px; }
+
+p {
+  font-family: var(--font-body);
+  font-size: 1.2rem;
+  line-height: 1.8;
+  max-width: 650px;
+  color: var(--text-main);
+  position: relative;
+  z-index: 10;
+  margin-bottom: 20px;
+}
+
+li {
+  font-family: var(--font-body);
+}
+
+.social-grid { display: flex; gap: 20px; margin-top: 30px; }
+
+.social-icon {
+  display: flex; align-items: center; justify-content: center; width: 70px; height: 70px;
+  background: var(--bg-node); border: 1px solid var(--border-color); color: var(--text-main);
+  transition: all 0.3s ease;
+  clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+}
+
+.social-icon svg { width: 32px; height: 32px; fill: currentColor; transition: all 0.3s ease; }
+
+.social-icon:hover {
+  background: var(--bg-panel); border-color: var(--neon-blue); color: var(--neon-blue);
+  box-shadow: 0 0 20px var(--neon-blue-glow); transform: translateY(-5px);
+}
+
+.contact-btn {
+  display: inline-block; padding: 15px 40px; background: transparent;
+  border: 2px solid var(--neon-red); color: var(--neon-red);
+  font-family: var(--font-titles); font-size: 1.5rem; text-transform: uppercase;
+  text-decoration: none; margin-top: 20px; transition: all 0.3s ease;
+  box-shadow: 0 0 10px rgba(255, 26, 60, 0.2); position: relative; z-index: 10;
+}
+
+.contact-btn:hover {
+  background: var(--neon-red); color: #ffffff;
+  box-shadow: 0 0 25px var(--neon-red); transform: translateY(-3px);
+}
+
+.neon-word {
+  font-family: var(--font-titles); font-size: 1.1em; color: var(--text-highlight-cyan);
+  text-transform: uppercase; display: inline-block; margin: 0 2px; vertical-align: middle;
+  text-shadow: 0 0 4px var(--neon-blue-glow);
+}
+
+.neon-word.pink { color: var(--text-highlight-gold); text-shadow: 0 0 4px rgba(250, 204, 21, 0.3); }
+
+.cookie-overlay {
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(8px);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 99999;
+}
+
+.cookie-modal {
+  background: var(--bg-panel);
+  border: 2px solid var(--neon-blue);
+  padding: 40px;
+  max-width: 500px;
+  width: 90%;
+  text-align: center;
+  clip-path: polygon(20px 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%, 0 20px);
+  box-shadow: 0 0 30px rgba(58, 58, 255, 0.3);
+}
+
+.cookie-modal h3 { font-family: var(--font-titles); color: var(--neon-blue); margin-top: 0; font-size: 1.5rem; }
+.cookie-modal p { font-family: var(--font-body); color: var(--text-main); font-size: 0.95rem; line-height: 1.6; margin-bottom: 25px; }
+.cookie-actions { display: flex; gap: 15px; justify-content: center; }
+
+.cookie-btn {
+  padding: 12px 20px; font-family: var(--font-titles); font-size: 1rem;
+  text-transform: uppercase; cursor: pointer; border: 2px solid var(--neon-red);
+  flex: 1; transition: all 0.3s ease;
+  clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+}
+
+.btn-accept { background: var(--neon-red); color: #000; }
+.btn-accept:hover { background: #fff; border-color: #fff; box-shadow: 0 0 15px var(--neon-red); }
+
+.btn-reject { background: transparent; color: var(--neon-red); }
+.btn-reject:hover { background: var(--neon-red); color: #000; box-shadow: 0 0 15px var(--neon-red); }
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-title { animation: none; }
+  .console-text { animation: none; }
+  .social-icon:hover { transform: none; }
+  .contact-btn:hover { transform: none; }
+  .repo-card:hover { transform: none; }
+}
+
+@media (max-width: 900px) {
+  h2 { font-size: 2rem; }
+  .hero-title { font-size: clamp(2rem, 8vw, 3rem); }
+  .content-section { padding: 30px 0; min-height: auto; }
+  .social-grid { flex-wrap: wrap; }
+  .repo-grid { grid-template-columns: 1fr; }
+}
+
+/* Clases de control de visibilidad para CSP */
+.hidden {
+  display: none !important;
+}
+
+.cookie-overlay.visible {
+  display: flex;
+}

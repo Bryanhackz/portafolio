@@ -1,0 +1,153 @@
+/* --- Paneles Biselados (Chamfered Panels) --- */
+.panel {
+  background: var(--bg-panel);
+  border: var(--border-main);
+  padding: var(--space-8);
+  position: relative;
+  backdrop-filter: blur(8px);
+  clip-path: polygon(
+    var(--cut-size) 0%,
+    100% 0%,
+    100% calc(100% - var(--cut-size)),
+    calc(100% - var(--cut-size)) 100%,
+    0% 100%,
+    0% var(--cut-size)
+  );
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.panel:hover {
+  border-color: var(--neon-cyan-dim);
+}
+
+.panel::before, .panel::after {
+  content: '';
+  position: absolute;
+  width: 15px; height: 15px;
+  pointer-events: none;
+  transition: all 0.3s;
+}
+.panel::before {
+  top: 0; right: 0;
+  border-top: 2px solid var(--neon-red);
+  border-right: 2px solid var(--neon-red);
+}
+.panel::after {
+  bottom: 0; left: 0;
+  border-bottom: 2px solid var(--neon-cyan);
+  border-left: 2px solid var(--neon-cyan);
+}
+
+/* --- Botones de Corte (Cut Buttons) --- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 28px;
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  cursor: pointer;
+  border: none;
+  position: relative;
+  clip-path: polygon(
+    10px 0%,
+    100% 0%,
+    100% calc(100% - 10px),
+    calc(100% - 10px) 100%,
+    0% 100%,
+    0% 10px
+  );
+  transition: all 0.2s;
+}
+
+.btn-primary {
+  background: var(--neon-red);
+  color: #000;
+}
+.btn-primary:hover {
+  background: #fff;
+  box-shadow: 0 0 20px var(--neon-red-glow);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--neon-cyan);
+  border: 1px solid var(--neon-cyan);
+}
+.btn-secondary:hover {
+  background: var(--neon-cyan-dim);
+  box-shadow: 0 0 15px var(--neon-cyan-glow);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--neon-cyan);
+  border: 1px solid var(--neon-cyan);
+}
+.btn-ghost:hover {
+  background: var(--neon-cyan-dim);
+  box-shadow: 0 0 15px var(--neon-cyan-glow);
+}
+
+.btn-sm { padding: 6px 12px; font-size: 0.75rem; }
+
+/* --- Inputs Estilo Terminal (Terminal Inputs) --- */
+.terminal-form .form-group {
+  position: relative;
+  margin-bottom: var(--space-6);
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid var(--border-color);
+  transition: border-color 0.3s;
+}
+.terminal-form .form-group:focus-within {
+  border-bottom-color: var(--neon-cyan);
+}
+
+.terminal-form .prompt {
+  color: var(--neon-red);
+  font-family: var(--font-mono);
+  font-size: 1.2rem;
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+.terminal-form input,
+.terminal-form textarea {
+  width: 100%;
+  background: transparent;
+  border: none;
+  color: var(--text-main);
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  padding: 10px 0;
+  outline: none;
+}
+.terminal-form textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+.terminal-form input::placeholder,
+.terminal-form textarea::placeholder {
+  color: var(--text-muted);
+}
+
+.blinking-cursor {
+  display: inline-block;
+  width: 8px;
+  height: 18px;
+  background-color: var(--neon-cyan);
+  animation: blink 1s step-end infinite;
+  margin-left: 5px;
+  vertical-align: middle;
+}
+@keyframes blink { 50% { opacity: 0; } }
+
+/* --- Utilidades de Texto --- */
+.text-red { color: var(--neon-red); }
+.text-cyan { color: var(--neon-cyan); }
+.text-blue { color: var(--neon-blue); }
+.text-green { color: #22c55e; }

@@ -1,0 +1,1 @@
+"""Repositorios por agregado. Toda consulta pasa por aquí."""

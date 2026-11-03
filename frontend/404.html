@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="es" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>404 // SYSTEM FAILURE</title>
+<style>
+    :root {
+        --bg-main: #06060a;
+        --text-main: #ffffff;
+        --neon-red: #ff1a3c;
+        --neon-blue: #3a3aff;
+        --neon-blue-glow: rgba(58, 58, 255, 0.6);
+        --border-color: #333;
+        --font-mono: 'Courier New', Courier, monospace;
+        --font-display: 'Impact', 'Arial Black', sans-serif;
+    }
+
+    [data-theme="light"] {
+        --bg-main: #f4f4f0;
+        --text-main: #111111;
+        --neon-red: #cc0011;
+        --neon-blue: #0033cc;
+        --neon-blue-glow: rgba(0, 51, 204, 0.3);
+        --border-color: #888;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+        background-color: var(--bg-main);
+        color: var(--text-main);
+        font-family: var(--font-mono);
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        background-image:
+            linear-gradient(rgba(58, 58, 255, 0.05) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(58, 58, 255, 0.05) 1px, transparent 1px);
+        background-size: 40px 40px;
+        transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .error-panel {
+        position: relative;
+        padding: 60px 40px;
+        background: rgba(10, 10, 15, 0.85);
+        border: 1px solid var(--border-color);
+        text-align: center;
+        max-width: 600px;
+        width: 90%;
+        backdrop-filter: blur(10px);
+        clip-path: polygon(20px 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%, 0 20px);
+        box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+    }
+
+    [data-theme="light"] .error-panel {
+        background: rgba(255, 255, 255, 0.9);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .error-panel::before, .error-panel::after {
+        content: '';
+        position: absolute;
+        width: 20px; height: 20px;
+        pointer-events: none;
+    }
+    .error-panel::before {
+        top: 0; right: 0;
+        border-top: 2px solid var(--neon-red);
+        border-right: 2px solid var(--neon-red);
+    }
+    .error-panel::after {
+        bottom: 0; left: 0;
+        border-bottom: 2px solid var(--neon-blue);
+        border-left: 2px solid var(--neon-blue);
+    }
+
+    .glitch-wrapper { position: relative; margin-bottom: 20px; }
+
+    .glitch {
+        font-family: var(--font-display);
+        font-size: clamp(6rem, 15vw, 10rem);
+        font-weight: normal;
+        line-height: 1;
+        color: var(--text-main);
+        position: relative;
+        display: inline-block;
+        letter-spacing: 5px;
+    }
+
+    .glitch::before, .glitch::after {
+        content: attr(data-text);
+        position: absolute;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        background: transparent;
+    }
+
+    .glitch::before {
+        left: 3px;
+        text-shadow: -2px 0 var(--neon-red);
+        clip: rect(24px, 550px, 90px, 0);
+        animation: glitch-anim 3s infinite linear alternate-reverse;
+    }
+
+    .glitch::after {
+        left: -3px;
+        text-shadow: -2px 0 var(--neon-blue);
+        clip: rect(85px, 550px, 140px, 0);
+        animation: glitch-anim2 2.5s infinite linear alternate-reverse;
+    }
+
+    @keyframes glitch-anim {
+        0% { clip: rect(10px, 9999px, 83px, 0); }
+        20% { clip: rect(62px, 9999px, 14px, 0); }
+        40% { clip: rect(33px, 9999px, 97px, 0); }
+        60% { clip: rect(91px, 9999px, 45px, 0); }
+        80% { clip: rect(55px, 9999px, 78px, 0); }
+        100% { clip: rect(15px, 9999px, 30px, 0); }
+    }
+
+    @keyframes glitch-anim2 {
+        0% { clip: rect(65px, 9999px, 20px, 0); }
+        20% { clip: rect(30px, 9999px, 70px, 0); }
+        40% { clip: rect(85px, 9999px, 40px, 0); }
+        60% { clip: rect(10px, 9999px, 90px, 0); }
+        80% { clip: rect(50px, 9999px, 60px, 0); }
+        100% { clip: rect(25px, 9999px, 80px, 0); }
+    }
+
+    .terminal-text {
+        text-align: left;
+        margin: 20px 0 40px 0;
+        font-size: 0.95rem;
+        line-height: 1.6;
+        color: var(--neon-blue);
+    }
+
+    .terminal-text p {
+        margin-bottom: 8px;
+        display: flex;
+        align-items: center;
+    }
+
+    .terminal-text p::before {
+        content: '>';
+        color: var(--neon-red);
+        margin-right: 10px;
+        font-weight: bold;
+    }
+
+    .blink {
+        animation: blink-caret 0.75s step-end infinite;
+        display: inline-block;
+        width: 10px;
+        height: 18px;
+        background-color: var(--neon-blue);
+        vertical-align: middle;
+        margin-left: 5px;
+    }
+
+    @keyframes blink-caret {
+        from, to { background-color: transparent }
+        50% { background-color: var(--neon-blue) }
+    }
+
+    .btn-return {
+        display: inline-block;
+        padding: 15px 30px;
+        background: transparent;
+        border: 2px solid var(--neon-red);
+        color: var(--neon-red);
+        font-family: var(--font-display);
+        font-size: 1.2rem;
+        text-transform: uppercase;
+        text-decoration: none;
+        letter-spacing: 2px;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+        clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+    }
+
+    .btn-return:hover {
+        background: var(--neon-red);
+        color: #000;
+        box-shadow: 0 0 20px var(--neon-red);
+    }
+
+    @keyframes neon-flicker {
+        0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+            text-shadow: 0 0 5px var(--neon-red), 0 0 15px var(--neon-red);
+            opacity: 1;
+        }
+        20%, 24%, 55% { text-shadow: none; opacity: 0.8; }
+    }
+
+    .glitch { animation: neon-flicker 4s infinite alternate; }
+
+    @media (prefers-reduced-motion: reduce) {
+        .glitch, .glitch::before, .glitch::after, .blink {
+            animation: none !important;
+        }
+    }
+</style>
+</head>
+<body>
+
+    <div class="error-panel">
+        <div class="glitch-wrapper">
+            <h1 class="glitch" data-text="404">404</h1>
+        </div>
+
+        <div class="terminal-text">
+            <p>ERROR: SECTOR_UNREACHABLE</p>
+            <p>THE FILE YOU ARE LOOKING FOR HAS BEEN CORRUPTED, MOVED OR NEVER EXISTED.</p>
+            <p>SECURITY PROTOCOL ACTIVATED.<span class="blink"></span></p>
+        </div>
+
+        <a href="/" class="btn-return">RETURN TO MAIN SCREEN</a>
+    </div>
+
+    <script src="/js/404-theme.js"></script>
+</body>
+</html>

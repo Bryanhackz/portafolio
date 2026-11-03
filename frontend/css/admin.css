@@ -1,0 +1,135 @@
+.admin-body {
+  background: #000;
+  min-height: 100vh;
+  overflow-y: auto;
+  height: auto;
+}
+
+.admin-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  border-bottom: 1px solid var(--neon-blue);
+  background: #050505;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.admin-main {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  padding: 24px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.admin-panel {
+  border: 1px solid var(--border-color);
+  padding: 16px;
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  border-bottom: 1px dashed var(--border-color);
+  padding-bottom: 8px;
+}
+
+/* NUEVAS CLASES PARA REEMPLAZAR ESTILOS EN LÍNEA */
+.panel-title {
+  font-size: 1.2rem;
+  margin: 0;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-direction: row; /* Anula el flex-direction: column de .admin-form label */
+}
+
+.form-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.admin-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.admin-form label {
+  font-size: 0.8rem;
+  color: var(--neon-blue);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.admin-form input,
+.admin-form textarea {
+  width: 100%;
+  padding: 8px;
+  background: #111;
+  border: 1px solid var(--border-color);
+  color: #fff;
+  font-family: var(--font-mono);
+}
+
+.admin-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.admin-list li {
+  border-bottom: 1px solid #222;
+  padding: 12px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.admin-list .item-meta {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.inline-form {
+  display: inline;
+}
+
+.form-status {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  margin: 8px 0 0 0;
+}
+
+.skeleton {
+  background: linear-gradient(90deg, #1a1a24 25%, #2a2a35 50%, #1a1a24 75%);
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s infinite;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+.skeleton-title { height: 20px; width: 60%; margin-bottom: 10px; }
+.skeleton-text { height: 14px; width: 100%; }
+.skeleton-text.short { width: 80%; }
+
+@keyframes skeleton-loading {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+@media (max-width: 900px) {
+  .admin-main { grid-template-columns: 1fr; }
+}
