@@ -33,5 +33,5 @@ A professional web development portfolio built with a **Security-First** approac
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/Bryanhackz/portafolio.git
-   cd portafolio-bryanhackz
+  git clone https://github.com/Bryanhackz/portafolio.git
+   cd portafolio
